@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% if request.user.is_authenticated %}
+
+{% endif %}
+
+{% block content %}
+<form method="post" action="{% url 'addECP' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Загрузить подпись</button>
+  </form>
+{% endblock %}

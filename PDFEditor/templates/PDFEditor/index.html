@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% if request.user.is_authenticated %}
+
+{% endif %}
+
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Исходный файл</th>
+        <th scope="col">Дата создания</th>
+        <th scope="col">Дата обновления</th>
+        <th scope="col">Готовый файл</th>
+        <th scope="col">Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for bb in bbs %}
+      <tr>
+        <td><a href="{{ bb.pathOld.url }}">{{ bb.pathOld }}</a></th>
+        <td>{{ bb.dataAdd|date:"d.m.Y H:i:s" }}</td>
+        <td>{{ bb.dataUpdate|date:"d.m.Y H:i:s" }}</td>
+        <td>
+          {% if bb.pathESP %}
+          <a href="{{ bb.pathESP.url }}">Скачать</a>
+          {% endif %}
+        </td>
+        <td>{{ bb.status }}</td>
+      </tr>
+
+{% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+
+
+
+
